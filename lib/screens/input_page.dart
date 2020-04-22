@@ -7,6 +7,7 @@ import '../constants.dart';
 import 'results_page.dart';
 import '../components/round_icon_button.dart';
 import '../components/bottom_button.dart';
+import 'package:bmi_calculator/calculator_brain.dart';
 
 enum Gender { female, male }
 
@@ -17,8 +18,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
-  int height = 180;
-  int weight = 60;
+  int height = 50;
+  int weight = 70;
   int age = 10;
 
   @override
@@ -88,7 +89,7 @@ class _InputPageState extends State<InputPage> {
                         style: kNumTextStyle,
                       ),
                       Text(
-                        'cm',
+                        'in',
                         style: kLabelTextStyle,
                       )
                     ],
@@ -104,8 +105,8 @@ class _InputPageState extends State<InputPage> {
                     ),
                     child: Slider(
                       value: height.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
+                      min: 48.0,
+                      max: 84.0,
                       onChanged: (double newValue) {
                         setState(() {
                           height = newValue.round();
@@ -206,8 +207,14 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonTitle: 'CALCULATE',
             onTap: () {
+              CalculatorBrain calc = CalculatorBrain(height: height, weight: weight);
+
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ResultsPage();
+                return ResultsPage(
+                  bmiResult: calc.calculateBMI(),
+                  resultText: calc.getResults(),
+                  interpretation: calc.getInterpretation(),
+                );
               }));
             },
           )
