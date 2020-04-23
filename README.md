@@ -62,3 +62,36 @@ Inheritance is used to get functionality of another Class using the keyword
 ```dart
 class BottomButton extends StatelessWidget{}
 ```
+
+## Example of Composition
+
+Composition is the construction of a new Widget from scratch, whereas inheritance overwrites the functionality
+of the Class. When using composition to build a widget, small components
+are combined to make a larger Widget.
+
+```dart
+class ReusableCard extends StatelessWidget {
+  ReusableCard({@required this.color, this.cardChild, this.onPress});
+
+  final Color color;
+  final Widget cardChild;
+  final Function onPress;
+}
+
+```
+
+## Flutter Navigator
+
+Navigator is used to change the screen of the application by using the keyword  
+`push` to add a new screen. I also used `pop` to remove a screen and return to the  
+homepage.
+
+```dart
+Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return ResultsPage(
+      bmiResult: calc.calculateBMI(),
+      resultText: calc.getResults(),
+      interpretation: calc.getInterpretation(),
+    );
+  }));
+```
