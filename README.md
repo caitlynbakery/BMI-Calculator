@@ -82,8 +82,9 @@ class ReusableCard extends StatelessWidget {
 
 ## Flutter Navigator
 
-Navigator is used to change the screen of the application by using the keyword  
-`push` to add a new screen. I also used `pop` to remove a screen and return to the  
+Navigator is used to change the screen of the application by using
+the keyword `push` to add a new screen. I also used `pop` to remove
+a screen and return to the
 homepage.
 
 ```dart
